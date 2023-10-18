@@ -3,9 +3,9 @@ info:
   title: Play it with us
   version: 0.1.0
 
-servers:
-  - url: http://piwu.example.com/
-    description: Production
+# servers:
+#   - url: http://piwu.example.com/
+#     description: Production
 
 paths:
   /clubs:
@@ -54,6 +54,8 @@ components:
   schemas:
     RegisterClub:
       type: object
+      required:
+        - name
       properties:
         name:
           type: string
