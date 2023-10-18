@@ -34,6 +34,18 @@ jobs:
       - name: Build Slate
         run: docker run --rm -v $(pwd)/docs/slate:/srv/slate/build -v $(pwd)/docs/slate_source:/srv/slate/source slatedocs/slate build
 
+      - name: Archive Slate source
+        uses: actions/upload-artifact@v3
+        with:
+          name: slate-source
+          path: docs/slate_source
+
+      - name: Archive Slate build
+        uses: actions/upload-artifact@v3
+        with:
+          name: slate-source
+          path: docs/slate
+
       - name: Remove Slate source dir
         run: rm -r docs/slate_source
 
