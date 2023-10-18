@@ -6,10 +6,25 @@ info:
 servers:
   - url: http://piwu.example.com/
     description: Production
+
 paths:
   /clubs:
+    post:
+      summary: Register a new club
+      tags: ['Club Directory']
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterClub'
+      responses:
+        200:
+          description: A JSON array of clubs
+
     get:
       summary: Get all the clubs
+      tags: ['Club Directory']
       responses:
         200:
           description: A JSON array of clubs
@@ -37,6 +52,12 @@ paths:
 
 components:
   schemas:
+    RegisterClub:
+      type: object
+      properties:
+        name:
+          type: string
+
     Club:
       type: object
       properties:
