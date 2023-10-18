@@ -18,5 +18,29 @@ paths:
               schema:
                 type: array
                 items:
-                  type: string
-                  example: My Club
+                  $ref: '#/components/schemas/Club'
+              examples:
+                Tom:
+                  value:
+                    - id: 1
+                      name: Tom's Awesome Club
+                    - id: 2
+                      name: Tom's Brilliant Club
+                Chris:
+                  value:
+                    - id: 1
+                      name: Chris's Awesome Club
+                    - id: 2
+                      name: Chris's Brilliant Club
+
+
+
+components:
+  schemas:
+    Club:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
