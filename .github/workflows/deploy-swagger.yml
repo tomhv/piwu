@@ -23,7 +23,7 @@ jobs:
           spec-file: api.yaml
 
       - name: Check npx version
-        run: npx --version
+        run: npx widdershins --search false --language_tabs 'shell:cURL' --summary api.yaml -o docs/slate/index.md
 
       - uses: jsmrcaga/action-netlify-deploy@v2.0.0
         with:
