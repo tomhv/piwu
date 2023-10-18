@@ -1,0 +1,22 @@
+openapi: 3.0.0
+info:
+  title: Play it with us
+  version: 0.1.0
+
+servers:
+  - url: http://piwu.example.com/
+    description: Production
+paths:
+  /clubs:
+    get:
+      summary: Get all the clubs
+      responses:
+        200:
+          description: A JSON array of clubs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  example: My Club
