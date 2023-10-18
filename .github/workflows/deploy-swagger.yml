@@ -22,14 +22,20 @@ jobs:
           output: docs/swagger
           spec-file: api.yaml
 
-      - name: Make Slate dir
+      - name: Make Slate build dir
         run: mkdir docs/slate
 
+      - name: Make Slate source dir
+        run: mkdir docs/slate_source
+
       - name: Build markdown
-        run: npx widdershins --search false --language_tabs 'shell:cURL' --summary api.yaml -o docs/slate/index.md
+        run: npx widdershins --search false --language_tabs 'shell:cURL' --summary api.yaml -o docs/slate_source/index.md
 
       - name: Build Slate
-        run: docker run --rm --name slate -v $(pwd)/docs/slate:/srv/slate/build -v $(pwd)/docs/slate:/srv/slate/source slatedocs/slate build
+        run: docker run --rm -v $(pwd)/docs/slate:/srv/slate/build -v $(pwd)/docs/slate_source:/srv/slate/source slatedocs/slate build
+
+      - name: Remove Slate source dir
+        run: rm -r docs/slate_source
 
       - uses: jsmrcaga/action-netlify-deploy@v2.0.0
         with:
