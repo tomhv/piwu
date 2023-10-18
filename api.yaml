@@ -22,34 +22,6 @@ paths:
         202:
           description: Accepted
 
-    get:
-      summary: Get all the clubs
-      tags: ['Club Directory']
-      responses:
-        200:
-          description: A JSON array of clubs
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Club'
-              examples:
-                Tom:
-                  value:
-                    - id: 1
-                      name: Tom's Awesome Club
-                    - id: 2
-                      name: Tom's Brilliant Club
-                Chris:
-                  value:
-                    - id: 1
-                      name: Chris's Awesome Club
-                    - id: 2
-                      name: Chris's Brilliant Club
-
-
-
 components:
   schemas:
     RegisterClub:
@@ -57,13 +29,5 @@ components:
       required:
         - name
       properties:
-        name:
-          type: string
-
-    Club:
-      type: object
-      properties:
-        id:
-          type: string
         name:
           type: string
