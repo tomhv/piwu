@@ -22,17 +22,26 @@ jobs:
           output: docs/swagger
           spec-file: api.yaml
 
-      - name: Make Slate build dir
+      - name: Make Slate dir
         run: mkdir docs/slate
 
-      - name: Make Slate source dir
-        run: mkdir docs/slate_source
-
       - name: Build markdown
-        run: npx widdershins --search false --language_tabs 'shell:cURL' --summary api.yaml -o docs/slate_source/index.md
+        run: npx widdershins --search false --language_tabs 'shell:cURL' --summary api.yaml -o index.html.md
 
       - name: Build Slate
-        run: docker run --rm -v $(pwd)/docs/slate:/srv/slate/build -v $(pwd)/docs/slate_source/index.md:/srv/slate/source/index.md slatedocs/slate build
+        run: docker run --rm -v $(pwd)/docs/slate:/srv/slate/build -v $(pwd)/index.html.md:/srv/slate/source/index.html.md slatedocs/slate build
+
+      - name: Archive Slate source
+        uses: actions/upload-artifact@v3
+        with:
+          name: slate-source
+          path: index.html.md
+
+      - name: Archive Slate build
+        uses: actions/upload-artifact@v3
+        with:
+          name: slate-source
+          path: docs/slate
 
       - name: Remove Slate source dir
         run: rm -r docs/slate_source
