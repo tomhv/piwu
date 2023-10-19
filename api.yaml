@@ -8,6 +8,20 @@ info:
 #     description: Production
 
 paths:
+  /users:
+    post:
+      summary: Sign up
+      tags: ['Sign-Up']
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignUp'
+      responses:
+        200:
+          description: OK
+
   /clubs:
     post:
       summary: Register a new club
@@ -24,6 +38,14 @@ paths:
 
 components:
   schemas:
+    SignUp:
+      type: object
+      required:
+        - phone
+      properties:
+        phone:
+          type: string
+
     RegisterClub:
       type: object
       required:
