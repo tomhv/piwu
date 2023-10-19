@@ -31,6 +31,9 @@ jobs:
       - name: Build Slate
         run: docker run --rm -v $(pwd)/docs/slate:/srv/slate/build -v $(pwd)/index.html.md:/srv/slate/source/index.html.md slatedocs/slate build
 
+      - name: Build AsyncAPI docs
+        run: docker run --rm -v ${pwd}/docs/asyncapi:/app/example -v ${pwd}/asyncapi.yaml:/app/asyncapi.yaml asyncapi/generator asyncapi.yaml @asyncapi/html-template -o example
+
       - name: Archive Slate source
         uses: actions/upload-artifact@v3
         with:

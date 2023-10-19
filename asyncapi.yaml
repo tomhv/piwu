@@ -1,0 +1,29 @@
+asyncapi: 2.6.0
+
+info:
+  title: Play it with us
+  version: '0.1.0'
+
+channels:
+  user/signedup:
+    subscribe:
+      operationId: UserSignedUp
+      message:
+        $ref: '#/components/messages/UserSignedUp'
+
+components:
+  messages:
+    UserSignedUp:
+      name: UserSignedUp
+      payload:
+        type: object
+        summary: UserSignedUp
+        additionalProperties: false
+        properties:
+          id:
+            type: string
+            format: uuid
+            example: b09d4006-565e-4203-95cf-163fd0e236ae
+          phone:
+            type: string
+            example: '+15551112222'
