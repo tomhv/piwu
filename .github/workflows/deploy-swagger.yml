@@ -25,6 +25,9 @@ jobs:
       - name: Make Slate dir
         run: mkdir docs/slate
 
+      - name: Make AsycAPI dir
+        run: mkdir docs/asyncapi
+
       - name: Build markdown
         run: npx widdershins --search false --language_tabs 'shell:cURL' --summary api.yaml -o index.html.md
 
