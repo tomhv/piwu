@@ -31,7 +31,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RegisterClub'
+              $ref: './schemas/RegisterClub.schema.yaml'
       responses:
         202:
           description: Accepted
@@ -44,12 +44,4 @@ components:
         - phone
       properties:
         phone:
-          type: string
-
-    RegisterClub:
-      type: object
-      required:
-        - name
-      properties:
-        name:
           type: string
