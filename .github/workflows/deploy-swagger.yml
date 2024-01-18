@@ -19,6 +19,9 @@ jobs:
       - name: Copy api.yaml to Swagger
         run: cp api.yaml docs/swagger/
 
+      - name: Copy schemas to Swagger
+        run: cp schemas docs/swagger/
+
       - name: Copy static assests for Swagger
         run: |
           docker run \
