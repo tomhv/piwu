@@ -16,11 +16,14 @@ jobs:
         with:
           node-version: 18
 
-      - name: Generate Swagger UI
-        uses: Legion2/swagger-ui-action@v1
-        with:
-          output: docs/swagger
-          spec-file: api.yaml
+#     - name: Generate Swagger UI
+#       uses: Legion2/swagger-ui-action@v1
+#       with:
+#         output: docs/swagger
+#         spec-file: api.yaml
+
+      - name: Copy OAS file to swagger
+        run: cp api.yaml docs/swagger
 
       - name: Make Slate dir
         run: mkdir docs/slate
