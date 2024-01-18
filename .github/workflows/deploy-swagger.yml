@@ -16,14 +16,22 @@ jobs:
         with:
           node-version: 18
 
-#     - name: Generate Swagger UI
-#       uses: Legion2/swagger-ui-action@v1
-#       with:
-#         output: docs/swagger
-#         spec-file: api.yaml
+      - name: Copy api.yaml to Swagger
+        run: cp api.yaml docs/swagger/
 
-      - name: Copy OAS file to swagger
-        run: cp api.yaml docs/swagger
+      - name: Copy static assests for Swagger
+        run: |
+          docker run \
+            --rm \
+            -v ${PWD}/docs/swagger/:/dist-local/ \
+            --entrypoint cp \
+            swaggerapi/swagger-ui \
+            /usr/share/nginx/html/swagger-ui.css \
+            /usr/share/nginx/html/favicon-32x32.png \
+            /usr/share/nginx/html/favicon-16x16.png \
+            /usr/share/nginx/html/swagger-ui-bundle.js \
+            /usr/share/nginx/html/swagger-ui-standalone-preset.js \
+            /dist-local
 
       - name: Make Slate dir
         run: mkdir docs/slate
