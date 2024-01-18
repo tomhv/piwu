@@ -9,3 +9,5 @@ required:
 properties:
   name:
     type: string
+    examples:
+      - Sunday Morning FC
